@@ -17,14 +17,17 @@ public class OpcionalService implements ServiceDTO<Opcional, OpcionalRequest, Op
     @Autowired
     private OpcionalRepository repo;
 
+    @Autowired
+    private SaborService saborService;
+
     @Override
     public Collection<Opcional> findAll() {
         return repo.findAll();
     }
 
     @Override
-    public Collection<Opcional> findAll(Example<Opcional> example) {
-        return null;
+    public Collection<Opcional> findAll(Example <Opcional> example) {
+        return repo.findAll( example );
     }
 
     @Override
@@ -38,8 +41,9 @@ public class OpcionalService implements ServiceDTO<Opcional, OpcionalRequest, Op
     }
 
     @Override
-    public Opcional toEntity(OpcionalRequest dto) {
-        return null;
+    public Opcional toEntity(OpcionalRequest r) {
+        var sabor = saborService.toEntity(r.sabor());
+        return Opcional.builder().nome(r.nome()).sabor(sabor).preco(r.preco()).build();
     }
 
     @Override

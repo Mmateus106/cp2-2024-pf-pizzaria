@@ -1,5 +1,6 @@
 package br.com.fiap.pizzaria.domain.service;
 
+import br.com.fiap.pizzaria.domain.dto.request.AbstractRequest;
 import br.com.fiap.pizzaria.domain.dto.request.SaborRequest;
 import br.com.fiap.pizzaria.domain.dto.response.SaborResponse;
 import br.com.fiap.pizzaria.domain.entity.Sabor;
@@ -25,7 +26,7 @@ public class SaborService implements ServiceDTO<Sabor, SaborRequest, SaborRespon
 
     @Override
     public Collection<Sabor> findAll(Example<Sabor> example) {
-        return null;
+        return repo.findAll( example );
     }
 
     @Override
@@ -39,12 +40,13 @@ public class SaborService implements ServiceDTO<Sabor, SaborRequest, SaborRespon
     }
 
     @Override
-    public Sabor toEntity(SaborRequest dto) {
-        return null;
+    public Sabor toEntity(SaborRequest r) {
+        return Sabor.builder().descricao(r.descricao()).nome(r.nome()).build();
     }
 
     @Override
     public SaborResponse toResponse(Sabor e) {
         return null;
     }
+
 }

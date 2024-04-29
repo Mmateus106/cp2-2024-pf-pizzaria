@@ -25,7 +25,7 @@ public class PizzariaService implements ServiceDTO<Pizzaria, PizzariaRequest, Pi
 
     @Override
     public Collection<Pizzaria> findAll(Example<Pizzaria> example) {
-        return null;
+        return repo.findAll( example );
     }
 
     @Override

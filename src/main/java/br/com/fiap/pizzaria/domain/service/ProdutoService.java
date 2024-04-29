@@ -25,7 +25,7 @@ public class ProdutoService implements ServiceDTO<Produto, ProdutoRequest, Produ
 
     @Override
     public Collection<Produto> findAll(Example<Produto> example) {
-        return null;
+        return repo.findAll( example );
     }
 
     @Override
