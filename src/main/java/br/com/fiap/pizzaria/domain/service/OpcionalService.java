@@ -43,7 +43,12 @@ public class OpcionalService implements ServiceDTO<Opcional, OpcionalRequest, Op
     @Override
     public Opcional toEntity(OpcionalRequest r) {
         var sabor = saborService.toEntity(r.sabor());
-        return Opcional.builder().nome(r.nome()).sabor(sabor).preco(r.preco()).build();
+
+        return Opcional.builder()
+                .nome(r.nome())
+                .sabor(sabor)
+                .preco(r.preco())
+                .build();
     }
 
     @Override

@@ -2,9 +2,7 @@ package br.com.fiap.pizzaria.domain.resource;
 
 import br.com.fiap.pizzaria.domain.dto.response.OpcionalResponse;
 import br.com.fiap.pizzaria.domain.entity.Opcional;
-import br.com.fiap.pizzaria.domain.repository.OpcionalRepository;
 import br.com.fiap.pizzaria.domain.service.OpcionalService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
