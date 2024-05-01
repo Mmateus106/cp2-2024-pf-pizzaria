@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(name = "/opcionais")
+@RequestMapping(value = "/opcionais")
 public class OpcionalResource {
 
     @Autowired

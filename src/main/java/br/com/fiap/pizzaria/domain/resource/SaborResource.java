@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(name = "/sabores")
+@RequestMapping(value = "/sabores")
 public class SaborResource {
 
     @Autowired
