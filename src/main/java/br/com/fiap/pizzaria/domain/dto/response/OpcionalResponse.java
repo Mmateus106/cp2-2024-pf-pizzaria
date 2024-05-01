@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Builder
 public record OpcionalResponse(
 
-        String mome,
+        String nome,
         Long id,
         BigDecimal preco,
         SaborResponse sabor

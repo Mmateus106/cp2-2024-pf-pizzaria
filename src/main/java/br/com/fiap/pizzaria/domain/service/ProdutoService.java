@@ -1,7 +1,9 @@
 package br.com.fiap.pizzaria.domain.service;
 
 import br.com.fiap.pizzaria.domain.dto.request.ProdutoRequest;
+import br.com.fiap.pizzaria.domain.dto.response.OpcionalResponse;
 import br.com.fiap.pizzaria.domain.dto.response.ProdutoResponse;
+import br.com.fiap.pizzaria.domain.dto.response.SaborResponse;
 import br.com.fiap.pizzaria.domain.entity.Produto;
 import br.com.fiap.pizzaria.domain.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService implements ServiceDTO<Produto, ProdutoRequest, ProdutoResponse>{
 
     @Autowired
     private ProdutoRepository repo;
+
+    @Autowired
+    private SaborService saborService;
+
+    @Autowired
+    private OpcionalService opcionalService;
 
 
     @Override
@@ -45,6 +55,17 @@ public class ProdutoService implements ServiceDTO<Produto, ProdutoRequest, Produ
 
     @Override
     public ProdutoResponse toResponse(Produto e) {
-        return null;
+        var sabor = saborService.toResponse(e.getSabor());
+        Collection<OpcionalResponse> opcionais = null;
+        if (Objects.nonNull(e.getOpcionais()) && !e.getOpcionais().isEmpty())
+            opcionais = e.getOpcionais().stream().map(opcionalService::toResponse).toList();
+
+        return ProdutoResponse.builder()
+                .opcionais(opcionais)
+                .preco(e.getPreco())
+                .id(e.getId())
+                .sabor(sabor)
+                .nome(e.getNome())
+                .build();
     }
 }

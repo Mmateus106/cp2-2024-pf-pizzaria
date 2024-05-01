@@ -41,12 +41,19 @@ public class SaborService implements ServiceDTO<Sabor, SaborRequest, SaborRespon
 
     @Override
     public Sabor toEntity(SaborRequest r) {
-        return Sabor.builder().descricao(r.descricao()).nome(r.nome()).build();
+        return Sabor.builder()
+                .descricao(r.descricao())
+                .nome(r.nome())
+                .build();
     }
 
     @Override
     public SaborResponse toResponse(Sabor e) {
-        return null;
+        return SaborResponse.builder()
+                .id(e.getId())
+                .nome(e.getNome())
+                .descricao(e.getDescricao())
+                .build();
     }
 
 }
