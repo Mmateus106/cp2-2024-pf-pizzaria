@@ -1,7 +1,7 @@
 package br.com.fiap.pizzaria.domain.resource;
 
+import br.com.fiap.pizzaria.domain.dto.request.PizzariaRequest;
 import br.com.fiap.pizzaria.domain.dto.response.PizzariaResponse;
-import br.com.fiap.pizzaria.domain.dto.response.ProdutoResponse;
 import br.com.fiap.pizzaria.domain.entity.Pizzaria;
 import br.com.fiap.pizzaria.domain.service.PizzariaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +30,10 @@ public class PizzariaResource {
         return ResponseEntity.ok( resposta );
     }
 
+//    @Transactional
     @PostMapping
-    public Pizzaria save(@RequestBody Pizzaria pizzaria) {
+    public Pizzaria save(@RequestBody PizzariaRequest pizzariaRequest) {
+        var pizzaria = service.toEntity(pizzariaRequest);
         return service.save(pizzaria);
 
     }
